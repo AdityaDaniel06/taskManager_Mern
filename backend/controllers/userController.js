@@ -44,7 +44,7 @@ const deleteUser = async (req, res) => {
   //   console.log("deleting ", req.params.id);
 
   try {
-    const user = await TaskModel.findByIdAndDelete(req.params.id);
+    const user = await UserModel.findByIdAndDelete(req.params.id);
     res.status(204).json({
       status: "success",
       data: null,
