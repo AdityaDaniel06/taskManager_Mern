@@ -124,7 +124,7 @@ const updateTask = async (req, res) => {
     const updatedTask = await TaskModel.findByIdAndUpdate(
       req.params.id,
       req.body,
-      { new: true, runValidators: true } // Return the updated document and validate the updates
+      { new: true, runValidators: true }
     );
 
     res.status(200).json({

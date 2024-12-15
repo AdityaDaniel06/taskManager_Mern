@@ -39,7 +39,7 @@ function EditTask() {
         description: taskData.description,
         priority: taskData.priority,
         dueDate: taskData.dueDate,
-        assignTo: taskData.assignTo?.name, // Store the user ID
+        assignTo: taskData.assignTo?._id, // Store the user ID
         status: taskData.status,
         completed: taskData.completed,
       });
