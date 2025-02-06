@@ -96,6 +96,7 @@ function ShowTask() {
         key={index}
         className={`${priorityClass} border-b transition duration-150`}
       >
+        <td className="p-3 text-sm ">{index + 1}</td>
         <td className="p-3 text-sm ">{value._id}</td>
         <td className="p-3 text-sm ">{value.title}</td>
         <td className="p-3 text-sm ">{value.description}</td>
@@ -149,6 +150,9 @@ function ShowTask() {
         <table className="table-auto w-full border-collapse border border-gray-300">
           <thead>
             <tr className="bg-gray-500 text-white">
+              <th className="p-2.5 text-sm font-semibold text-center">
+                Task No.
+              </th>
               <th className="p-2.5 text-sm font-semibold text-center">
                 Task ID
               </th>

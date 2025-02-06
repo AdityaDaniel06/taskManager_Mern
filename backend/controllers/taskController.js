@@ -2,12 +2,12 @@ const TaskModel = require("../models/taskModel");
 const UserModel = require("../models/userModel");
 
 const addNewTask = async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   try {
     // Find the user by their username or another unique field (e.g., email)
     const user = await UserModel.findOne({ name: req.body.assignTo }); // assuming `assignTo` is username or unique field
 
-    console.log(user);
+    // console.log(user);
     if (!user) {
       return res.status(404).json({
         status: "fail",

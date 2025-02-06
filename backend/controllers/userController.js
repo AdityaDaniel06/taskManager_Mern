@@ -1,18 +1,25 @@
 const UserModel = require("../models/userModel");
 const TaskModel = require("../models/taskModel");
 
+const bcrypt = require("bcrypt");
+
 // create a user
 const saveUser = async (req, res) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     const { name, email, password, role } = req.body;
+
+    // encoding can be done in Models
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     const userData = await UserModel.create({
       name,
       email,
-      password,
+      password: hashedPassword,
       role,
     });
-    console.log(userData);
+    // console.log(userData);
     res.status(200).send("Data saved successfully");
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -63,8 +70,11 @@ const userCheck = async (req, res) => {
   const { email, password } = req.body;
   const User = await UserModel.find({ email: email });
   console.log(User);
+  const validPassword = await bcrypt.compare(password, User.password);
+
   if (User.length >= 1) {
-    if (User[0].password != password) {
+    // if (User[0].password != password) {
+    if (!validPassword) {
       res.status(401).send({ msg: "Invalid Password!" });
     } else {
       res.send({ Data: User, msg: "Login Successful" });
